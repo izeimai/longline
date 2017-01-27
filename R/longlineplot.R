@@ -23,7 +23,7 @@ longlineplot <- function(long_line_df=longline_example,rect_fill="grey80",rect_c
   long_line_df$subject_label_x <- long_line_df$enroll - 0.2*time_range
   p <- ggplot(long_line_df)
   p <- p + geom_rect(aes_string(xmin="enroll",xmax="exit",ymin=0,ymax=max("exposure_number")),fill=rect_fill,colour=rect_color)
-  p <- p + geom_segment(aes_string(x="exposure_start",xend="exposure_end",y="exposure_number",yend="exposure_number",colour="exposure"),width=0.5)
+  p <- p + geom_segment(aes_string(x="exposure_start",xend="exposure_end",y="exposure_number",yend="exposure_number",colour="exposure"))
   p <- p + geom_text(aes_string(x="subject_label_x",y="subject_label_y",label="subject_label"),hjust=0,size=text_size/3,na.rm=TRUE)  
   p <- p + facet_wrap(~subject,ncol=1,shrink=FALSE)
   p <- p + theme_classic()
@@ -31,7 +31,7 @@ longlineplot <- function(long_line_df=longline_example,rect_fill="grey80",rect_c
   p <- p + theme(strip.background=element_blank())
   p <- p + theme(strip.text=element_blank())
   p <- p + theme(panel.background=element_blank())
-  p <- p + theme(panel.margin.y=unit(0,"lines"))
+  p <- p + theme(panel.spacing.y=unit(0,"lines"))
   p <- p + theme(text=element_text(size=text_size))
   p <- p + scale_x_continuous(limits=c(min(long_line_df$subject_label_x),max(long_line_df$exit)),breaks=seq(min(long_line_df$enroll),max(long_line_df$exit),length.out=3))
   p <- p + labs(x=x_label,y=y_label)  
